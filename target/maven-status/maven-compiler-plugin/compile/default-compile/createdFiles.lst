@@ -1,0 +1,5 @@
+br\com\fiap\main\Main.class
+br\com\fiap\to\UsuarioTO.class
+br\com\fiap\conexoes\ConexaoFactory.class
+br\com\fiap\resource\UsuarioResource.class
+br\com\fiap\dao\UsuarioDAO.class
