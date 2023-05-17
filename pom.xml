@@ -69,5 +69,11 @@
 			<version>2.10.1</version>
 		</dependency>
 
+		<dependency>
+   			<groupId>com.oracle</groupId>
+    		<artifactId>ojdbc11</artifactId>
+    		<version>11.2.0</version>
+		</dependency>
+
 	</dependencies>
 </project>
