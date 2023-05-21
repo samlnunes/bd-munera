@@ -1,6 +1,7 @@
 package br.com.fiap.dao;
 
 import br.com.fiap.to.PostagemTO;
+import br.com.fiap.main.S3Uploader;
 
 import java.sql.Blob;
 import java.sql.Connection;
@@ -35,8 +36,11 @@ public class PostagemDAO {
 			statement.setInt(1, idPostagem);
 			statement.setString(2, postagem.getLegenda());
 
-			byte[] data = Base64.getDecoder().decode(postagem.getMidia());
-			statement.setBytes(3, data);
+			String objectKey = idPostagem + ".jpg";
+
+			String imgURL = S3Uploader.uploadImageToS3(postagem.getMidia(), objectKey);
+
+			statement.setString(3, imgURL);
 
 			LocalDateTime dataHoraAtual = LocalDateTime.now();
 			Timestamp timestamp = Timestamp.valueOf(dataHoraAtual);
