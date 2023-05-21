@@ -31,7 +31,7 @@ public class PostagemDAO {
 
 			String query = "INSERT INTO postagens (ID_POSTAGEM, LEGENDA, MIDIA, DATA_POSTAGEM) VALUES (?, ?, ?, ?)";
 			statement = conn.prepareStatement(query);
-			statement.setInt(1, idPostagem);
+			statement.setString(1, String.valueOf(idPostagem));
 			statement.setString(2, postagem.getLegenda());
 
 			String objectKey = idPostagem + ".jpg";
