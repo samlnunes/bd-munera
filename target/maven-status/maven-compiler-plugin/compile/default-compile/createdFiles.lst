@@ -1,5 +1,9 @@
-br\com\fiap\main\Main.class
-br\com\fiap\to\UsuarioTO.class
+br\com\fiap\resource\ClientePostagemResource.class
 br\com\fiap\conexoes\ConexaoFactory.class
-br\com\fiap\resource\UsuarioResource.class
-br\com\fiap\dao\UsuarioDAO.class
+br\com\fiap\dao\ClientePostagemDAO.class
+br\com\fiap\dao\PostagemDAO.class
+br\com\fiap\main\Main.class
+br\com\fiap\conexoes\CORSFilter.class
+br\com\fiap\resource\PostagemResource.class
+br\com\fiap\to\ClientePostagemTO.class
+br\com\fiap\to\PostagemTO.class
