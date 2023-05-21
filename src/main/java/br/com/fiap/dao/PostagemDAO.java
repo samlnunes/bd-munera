@@ -3,7 +3,6 @@ package br.com.fiap.dao;
 import br.com.fiap.to.PostagemTO;
 import br.com.fiap.main.S3Uploader;
 
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +11,6 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 import br.com.fiap.conexoes.ConexaoFactory;
@@ -73,16 +71,7 @@ public class PostagemDAO {
 				postagem.setLegenda(rs.getString("LEGENDA"));
 				postagem.setCurtida(rs.getInt("CURTIDA"));
 				postagem.setEmpresaCnpj(rs.getString("FK_EMPRESA_CNPJ2"));
-
-				Blob blob = rs.getBlob("MIDIA");
-				if (blob != null) {
-					byte[] bytes = blob.getBytes(1, (int) blob.length());
-
-					String base64 = Base64.getEncoder().encodeToString(bytes);
-					postagem.setMidia(base64);
-				} else {
-					postagem.setMidia("");
-				}
+				postagem.setMidia(rs.getString("MIDIA"));
 
 				Timestamp dataPostagem = rs.getTimestamp("DATA_POSTAGEM");
 				postagem.setDataPostagem(dataPostagem);
