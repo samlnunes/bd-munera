@@ -29,7 +29,7 @@ public class PostagemDAO {
 			seqResult.next();
 			int idPostagem = seqResult.getInt(1);
 
-			String query = "INSERT INTO postagens (ID_POSTAGEM, LEGENDA, MIDIA, DATA_POSTAGEM) VALUES (?, ?, ?, ?)";
+			String query = "INSERT INTO postagens (ID_POSTAGEM, LEGENDA, MIDIA, DATA_POSTAGEM, FK_EMPRESA_ID2) VALUES (?, ?, ?, ?, ?)";
 			statement = conn.prepareStatement(query);
 			statement.setString(1, String.valueOf(idPostagem));
 			statement.setString(2, postagem.getLegenda());
@@ -43,6 +43,7 @@ public class PostagemDAO {
 			LocalDateTime dataHoraAtual = LocalDateTime.now();
 			Timestamp timestamp = Timestamp.valueOf(dataHoraAtual);
 			statement.setTimestamp(4, timestamp);
+			statement.setInt(5, postagem.getIdEmpresa().intValue());
 
 			statement.executeUpdate();
 
@@ -69,11 +70,25 @@ public class PostagemDAO {
 				postagem.setIdPostagem(rs.getString("ID_POSTAGEM"));
 				postagem.setLegenda(rs.getString("LEGENDA"));
 				postagem.setCurtida(rs.getInt("CURTIDA"));
-				postagem.setIdEmpresa(rs.getInt("FK_EMPRESA_ID2"));
-				postagem.setMidia(rs.getString("MIDIA"));
 
+				int idEmpresa = rs.getInt("FK_EMPRESA_ID2");
+				postagem.setIdEmpresa(idEmpresa);
+				postagem.setMidia(rs.getString("MIDIA"));
 				Timestamp dataPostagem = rs.getTimestamp("DATA_POSTAGEM");
 				postagem.setDataPostagem(dataPostagem);
+
+				String empresaQuery = "SELECT ID_EMPRESA, NOME FROM empresas WHERE ID_EMPRESA = ?";
+				PreparedStatement empresaStatement = conn.prepareStatement(empresaQuery);
+				empresaStatement.setInt(1, idEmpresa);
+				ResultSet empresaRs = empresaStatement.executeQuery();
+
+				if (empresaRs.next()) {
+					postagem.setNomeEmpresa(empresaRs.getString("NOME"));
+					postagem.setIdEmpresa(empresaRs.getInt("ID_EMPRESA"));
+				}
+	
+				empresaRs.close();
+				empresaStatement.close();
 
 				postagens.add(postagem);
 			}

@@ -9,6 +9,7 @@ public class PostagemTO {
 	private String idPostagem;
 	private Number curtida;
 	private Number idEmpresa;
+	private String nomeEmpresa;
 	
 	public String getIdPostagem() {
 		return idPostagem;
@@ -46,13 +47,21 @@ public class PostagemTO {
 	public void setMidia(String midia) {
 		this.midia = midia;
 	}
+	public String getNomeEmpresa() {
+		return nomeEmpresa;
+	}
+	public void setNomeEmpresa(String nomeEmpresa) {
+		this.nomeEmpresa = nomeEmpresa;
+	}
+
 	public PostagemTO() {
 		
 	}
 	
-	public PostagemTO(String legenda, String midia) {
+	public PostagemTO(String legenda, String midia, Number idEmpresa) {
 		this.legenda = legenda;
 		this.midia = midia;
+		this.idEmpresa = idEmpresa;
 	}
 	
 }

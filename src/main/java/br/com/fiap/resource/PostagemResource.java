@@ -33,7 +33,8 @@ public class PostagemResource {
 	        jsonPostagem.put("legenda", postagem.getLegenda());
 	        jsonPostagem.put("midia", postagem.getMidia());
 	        jsonPostagem.put("curtidas", postagem.getCurtida());
-	        jsonPostagem.put("empresa", postagem.getIdEmpresa());
+	        jsonPostagem.put("empresaId", postagem.getIdEmpresa());
+	        jsonPostagem.put("empresaName", postagem.getNomeEmpresa());
 
 	        jsonPostagens.put(jsonPostagem);
 	    }
