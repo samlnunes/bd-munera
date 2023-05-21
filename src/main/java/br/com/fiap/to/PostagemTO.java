@@ -8,7 +8,7 @@ public class PostagemTO {
 	private Timestamp dataPostagem;
 	private String idPostagem;
 	private Number curtida;
-	private String empresaCnpj;
+	private Number idEmpresa;
 	
 	public String getIdPostagem() {
 		return idPostagem;
@@ -22,11 +22,11 @@ public class PostagemTO {
 	public void setCurtida(Number curtida) {
 		this.curtida = curtida;
 	}
-	public String getEmpresaCnpj() {
-		return empresaCnpj;
+	public Number getIdEmpresa() {
+		return idEmpresa;
 	}
-	public void setEmpresaCnpj(String empresaCnpj) {
-		this.empresaCnpj = empresaCnpj;
+	public void setIdEmpresa(Number idEmpresa) {
+		this.idEmpresa = idEmpresa;
 	}	
 	public Timestamp getDataPostagem() {
 		return dataPostagem;

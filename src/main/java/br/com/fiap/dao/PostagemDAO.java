@@ -29,7 +29,7 @@ public class PostagemDAO {
 			seqResult.next();
 			int idPostagem = seqResult.getInt(1);
 
-			String query = "INSERT INTO postagem (ID_POSTAGEM, LEGENDA, MIDIA, DATA_POSTAGEM) VALUES (?, ?, ?, ?)";
+			String query = "INSERT INTO postagens (ID_POSTAGEM, LEGENDA, MIDIA, DATA_POSTAGEM) VALUES (?, ?, ?, ?)";
 			statement = conn.prepareStatement(query);
 			statement.setInt(1, idPostagem);
 			statement.setString(2, postagem.getLegenda());
@@ -60,17 +60,16 @@ public class PostagemDAO {
 		Statement statement;
 
 		try {
-			String query = "SELECT * FROM postagem";
+			String query = "SELECT * FROM postagens ORDER BY DATA_POSTAGEM DESC";
 			statement = conn.createStatement();
 			ResultSet rs = statement.executeQuery(query);
 
 			while (rs.next()) {
 				PostagemTO postagem = new PostagemTO();
 				postagem.setIdPostagem(rs.getString("ID_POSTAGEM"));
-				postagem.setDataPostagem(rs.getTimestamp("DATA_POSTAGEM"));
 				postagem.setLegenda(rs.getString("LEGENDA"));
 				postagem.setCurtida(rs.getInt("CURTIDA"));
-				postagem.setEmpresaCnpj(rs.getString("FK_EMPRESA_CNPJ2"));
+				postagem.setIdEmpresa(rs.getInt("FK_EMPRESA_ID2"));
 				postagem.setMidia(rs.getString("MIDIA"));
 
 				Timestamp dataPostagem = rs.getTimestamp("DATA_POSTAGEM");
