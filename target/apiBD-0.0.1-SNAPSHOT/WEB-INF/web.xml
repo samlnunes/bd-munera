@@ -28,15 +28,16 @@
 
 	<servlet-mapping>
 		<servlet-name>jersey-servlet</servlet-name>
-		<url-pattern>/rest/*</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 
 	<filter>
 		<filter-name>CORSFilter</filter-name>
-		<filter-class>br.com.fiap.conexoes.CORSFilter</filter-class>
+		<filter-class>br.com.fiap.resource.CORSFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>CORSFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
 </web-app>
